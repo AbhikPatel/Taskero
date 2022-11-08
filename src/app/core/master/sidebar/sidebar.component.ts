@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OauthService } from '../../oauth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  public user:any;
+
+  constructor(private oAuthService:OauthService) { 
+    oAuthService.userProfile.subscribe((userInfo) => {
+      this.user = userInfo
+    })
+  }
 
   ngOnInit(): void {
   }
@@ -46,4 +53,8 @@ export class SidebarComponent implements OnInit {
       count:9
     },
   ]
+
+  public onLogout(){
+    this.oAuthService.signOut();
+  }
 }

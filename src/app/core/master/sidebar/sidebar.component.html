@@ -10,9 +10,9 @@
         <!-- Profile Section  -->
         <div class="d-flex flex-column align-items-center py-3 border-2 border-bottom">
             <figure>
-                <img src="../../../../assets/images/John Collins.jpg" class="profile-img rounded-circle" alt="">
+                <img src="{{user?.info?.picture}}" class="profile-img rounded-circle" alt="">
             </figure>
-            <h2 class="fs-5"> John Collins </h2>
+            <h2 class="fs-5"> {{user?.info?.name}} </h2>
         </div>
 
         <!-- Pages Section  -->
@@ -48,7 +48,7 @@
 
     <!-- Start: Lower Section  -->
     <div class="lower-section mb-5">
-        <div class="log-out d-flex align-items-center">
+        <div class="log-out d-flex align-items-center" (click)="onLogout()">
             <i class='bx bx-exit fs-5 me-2' ></i>
             <span class="cursor-pointer"> Log Out </span>
         </div>
