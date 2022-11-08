@@ -1,1 +1,58 @@
-<p>sidebar works!</p>
+<!-- Start: Sidebar Section  -->
+<div class="sidebar-container h-100 p-3 d-flex flex-column justify-content-between overflow-auto">
+
+    <!-- Start : Upper Section  -->
+    <div class="upper-section">
+
+        <!-- Logo Name  -->
+        <h1 class="logo-name text-center"> Tas<span class="text-primary">kero </span> </h1>
+
+        <!-- Profile Section  -->
+        <div class="d-flex flex-column align-items-center py-3 border-2 border-bottom">
+            <figure>
+                <img src="../../../../assets/images/John Collins.jpg" class="profile-img rounded-circle" alt="">
+            </figure>
+            <h2 class="fs-5"> John Collins </h2>
+        </div>
+
+        <!-- Pages Section  -->
+        <div class="py-3 border-2 border-bottom">
+            <h3 class="fs-5"> Pages </h3>
+            
+            <ul class="nav flex-column">
+                <li class="nav-item" *ngFor="let nav of navLink">
+                    <a class="nav-link cursor-pointer d-flex align-items-center my-1 rounded-2" aria-current="page">
+                        <i class='bx {{nav.classname}} fs-5 mb-1 me-2'></i> 
+                        <span> {{nav.text}} </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Priority Section  -->
+        <div class="py-3">
+            <h3 class="fs-5"> Priority </h3>
+            <ul class="list-unstyled ps-2">
+                <li class="d-flex align-items-center justify-content-between my-3" *ngFor="let data of priority">
+                    <div>
+                        <i class='bx bxs-tag-alt {{data.classname}}'></i>
+                        <span class="list-text"> {{data.text}} Priority </span>
+                    </div>
+                    <span class="priority-digit rounded-circle"> {{data.count}} </span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- End : Upper Section  -->
+
+    <!-- Start: Lower Section  -->
+    <div class="lower-section mb-5">
+        <div class="log-out d-flex align-items-center">
+            <i class='bx bx-exit fs-5 me-2' ></i>
+            <span class="cursor-pointer"> Log Out </span>
+        </div>
+    </div>
+    <!-- End: Lower Section  -->
+</div>
+<!-- End: Sidebar Section  -->
