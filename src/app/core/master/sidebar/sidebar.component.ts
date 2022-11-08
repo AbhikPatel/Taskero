@@ -11,4 +11,39 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  navLink = [
+    {
+      classname:"bxs-dashboard",
+      text:"Dashboard",
+      route:"dashboard"
+    },
+    {
+      classname:"bx-clipboard",
+      text:"Tasks",
+      route:"task"
+    },
+    {
+      classname:"bx-user",
+      text:"Employees",
+      route:"employee"
+    },
+  ]
+
+  priority = [
+    {
+      classname:"text-danger",
+      text:"High",
+      count:10
+    },
+    {
+      classname:"text-warning",
+      text:"Medium",
+      count:25
+    },
+    {
+      classname:"text-success",
+      text:"Low",
+      count:9
+    },
+  ]
 }

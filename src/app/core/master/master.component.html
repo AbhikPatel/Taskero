@@ -1,1 +1,20 @@
-<p>master works!</p>
+<!-- Start: Wrapper Section  -->
+<div class="wrapper h-100 d-flex position-relative">
+
+    <!-- Toggle Menu  -->
+    <input type="checkbox" id="toggle" class="d-none">
+    <label for="toggle" class="hamburger position-absolute"> 
+        <i class='bx bx-menu-alt-left fs-2'></i> 
+    </label>
+    
+    <!-- Sidebar Section  -->
+    <div id="sidebar" class="border-1 border-end">
+        <app-sidebar></app-sidebar>
+    </div>
+
+    <!-- Navigation Section  -->
+    <div class="content flex-grow-1">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<!-- End: Wrapper Section  -->
