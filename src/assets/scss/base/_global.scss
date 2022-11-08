@@ -11,9 +11,9 @@ html,body{
     overflow: hidden;
 }
 
-// .nav-link{
-//     background-color: #e2eeed;
-// }
+.active{
+    background-color: $nav-link-bg-color;
+}
 
 .cursor-pointer{
     cursor: pointer;
