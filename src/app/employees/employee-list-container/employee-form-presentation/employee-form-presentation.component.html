@@ -1,1 +1,75 @@
-<p>employee-form-presentation works!</p>
+<!-- Start: Overlay Form Section  -->
+<div class="rounded-3 bg-white p-5" style="width: 800px;">
+
+    <!-- Form Heading  -->
+    <h3 class="text-center text-primary"> Employees Form </h3>
+
+    <!-- Start: Form Section  -->
+    <form class="row pt-3" [formGroup]="EmployeeGroup" (ngSubmit)="onSubmit()">
+
+        <!-- Name  -->
+        <div class="col-12 mb-3">
+            <label for="fullname" class="form-label"> Name </label>
+            <input type="text" class="form-control" name="fullname" id="fullname" formControlName="fullname"
+                [ngClass]="{'border-danger' : getControls['fullname'].touched && getControls['fullname'].invalid}">
+            <span class="text-danger"
+                *ngIf="getControls['fullname']?.errors?.['required'] && getControls['fullname'].touched"> This Field is
+                required </span>
+            <span class="text-danger" *ngIf="getControls['fullname']?.errors?.['maxlength']"> Max should be 50
+                Characters </span>
+        </div>
+
+        <!-- Profile  -->
+        <!-- <div class="col-6 mb-3">
+            <label for="profile" class="form-label"> Profile </label>
+            <input type="file" class="form-control" id="profile" name="profile" formControlName="profile">
+        </div> -->
+        
+        <!-- Age  -->
+        <div class="col-6 mb-3">
+            <label for="age" class="form-label"> Age </label>
+            <input type="number" class="form-control" name="age" id="age" formControlName="age"
+                [ngClass]="{'border-danger' : getControls['age'].touched && getControls['age'].invalid}">
+            <span class="text-danger" *ngIf="getControls['age']?.errors?.['required'] && getControls['age'].touched">
+                This Field is required </span>
+            <span class="text-danger" *ngIf="getControls['age']?.errors?.['maxlength']"> Age should be in 2 digits
+            </span>
+        </div>
+        
+        <!-- Gender  -->
+        <div class="col-6 mb-3">
+            <label for="gender" class="form-label"> Gender </label>
+            <div class="mt-2">
+                <input type="radio" name="gender" id="male" value="Male" class="form-check-input"
+                    formControlName="gender">
+                <label for="male" class="form-check-label mx-3 cursor-pointer">Male</label>
+                <input type="radio" name="gender" id="female" value="Female" class="form-check-input"
+                    formControlName="gender">
+                <label for="female" class="form-check-label mx-3 cursor-pointer">Female</label>
+            </div>
+        </div>
+
+
+        <!-- City  -->
+        <div class="col-6 mb-3">
+            <label for="city" class="form-label"> City </label>
+            <input type="text" class="form-control" id="city" name="city" formControlName="city"
+                [ngClass]="{'border-danger' : getControls['city'].touched && getControls['city'].invalid}">
+            <span class="text-danger" *ngIf="getControls['city']?.errors?.['required'] && getControls['city'].touched">
+                This Field is required </span>
+            <span class="text-danger" *ngIf="getControls['city']?.errors?.['maxlength']"> Max should be 20 characters
+            </span>
+        </div>
+
+
+        <!-- Button Functionality  -->
+        <div class="d-flex justify-content-end align-items-center gap-3">
+            <button type="reset" class="btn btn-danger text-white"> Reset </button>
+            <button type="submit" class="btn btn-primary text-white" [disabled]="!EmployeeGroup.valid"> Submit </button>
+        </div>
+
+    </form>
+    <!-- End: Form Section  -->
+
+</div>
+<!-- End: Overlay Form Section  -->
