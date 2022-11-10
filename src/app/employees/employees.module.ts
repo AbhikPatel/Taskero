@@ -7,9 +7,11 @@ import { EmployeesComponent } from './employees.component';
 import { EmployeeListContainerComponent } from './employee-list-container/employee-list-container.component';
 import { EmployeeListPresentationComponent } from './employee-list-container/employee-list-presentation/employee-list-presentation.component';
 import { EmployeeFormPresentationComponent } from './employee-list-container/employee-form-presentation/employee-form-presentation.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeService } from './employee.service';
+import { FilterPipe } from './filter.pipe';
+import { EmployeeFilterPresentationComponent } from './employee-list-container/employee-filter-presentation/employee-filter-presentation.component';
 
 
 @NgModule({
@@ -17,14 +19,17 @@ import { EmployeeService } from './employee.service';
     EmployeesComponent,
     EmployeeListContainerComponent,
     EmployeeListPresentationComponent,
-    EmployeeFormPresentationComponent
+    EmployeeFormPresentationComponent,
+    FilterPipe,
+    EmployeeFilterPresentationComponent
   ],
   imports: [
     CommonModule,
     EmployeesRoutingModule,
     ReactiveFormsModule,
     OverlayModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers:[
     EmployeeService

@@ -6,8 +6,11 @@
 
     <!-- Btn Functionality  -->
     <div class="d-flex justify-content-between align-items-center py-3">
-        <button class="btn btn-primary"> Filter </button>
-        <button class="btn btn-primary" (click)="onAdd()"> + Add Employee </button>
+        <input type="email" class="form-control w-50" id="search" placeholder="Search By Name" [(ngModel)]="searchText" autocomplete="off">
+        <div>
+            <button class="btn btn-primary me-3" (click)="onFilter()"> Filter </button>
+            <button class="btn btn-primary" (click)="onAdd()"> + Add Employee </button>
+        </div>
     </div>
 
     <!-- Start: Table Section  -->
@@ -24,7 +27,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of employeesData, let i = index">
+                <tr *ngFor="let data of employeesData | filter:searchText , let i = index">
                     <th>{{i + 1}}</th>
                     <td>{{data.fullname}}</td>
                     <td>{{data.gender}}</td>
