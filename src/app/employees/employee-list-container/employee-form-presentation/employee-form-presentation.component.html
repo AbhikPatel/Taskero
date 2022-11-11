@@ -10,12 +10,12 @@
         <!-- Name  -->
         <div class="col-12 mb-3">
             <label for="fullname" class="form-label required"> Name </label>
-            <input type="text" class="form-control" name="fullname" id="fullname" formControlName="fullname"
-                [ngClass]="{'border-danger' : getControls['fullname'].touched && getControls['fullname'].invalid}">
+            <input type="text" class="form-control" name="name" id="name" formControlName="name"
+                [ngClass]="{'border-danger' : getControls['name'].touched && getControls['name'].invalid}">
             <span class="text-danger"
-                *ngIf="getControls['fullname']?.errors?.['required'] && getControls['fullname'].touched"> This Field is
+                *ngIf="getControls['name']?.errors?.['required'] && getControls['name'].touched"> This Field is
                 required </span>
-            <span class="text-danger" *ngIf="getControls['fullname']?.errors?.['maxlength']"> Max should be 50
+            <span class="text-danger" *ngIf="getControls['name']?.errors?.['maxlength']"> Max should be 50
                 Characters </span>
         </div>
 

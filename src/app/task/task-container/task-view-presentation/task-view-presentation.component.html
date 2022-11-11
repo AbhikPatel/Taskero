@@ -7,19 +7,13 @@
     <!-- BUtton Functionality  -->
     <div class="d-flex align-items-center justify-content-between py-3">
         <button type="button" class="btn btn-primary"> Filter </button>
-        <button type="button" class="btn btn-primary"> + Create Task </button>
+        <button type="button" class="btn btn-primary" (click)="onCreate()"> + Create Task </button>
     </div>
 
     <!-- Start: Task Cards Section  -->
-    <div class="row py-5">
+    <div class="row py-3">
         <div class="col-4">
-            <span class="text-muted"> TODO </span>
-        </div>
-        <div class="col-4">
-            <span class="text-muted"> TODO </span>
-        </div>
-        <div class="col-4">
-            <span class="text-muted"> TODO </span>
+            <span class="text-muted"> TODO (5) </span>
         </div>
     </div>
     <!-- End: Task Cards Section  -->

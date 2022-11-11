@@ -1,1 +1,4 @@
-<app-task-view-presentation></app-task-view-presentation>
+<app-task-view-presentation
+    [employeeData]="getEmployees$|async"
+    [taskData]="getTasks$|async"
+></app-task-view-presentation>

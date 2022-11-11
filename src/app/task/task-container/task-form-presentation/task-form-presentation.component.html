@@ -1,1 +1,98 @@
-<p>task-form-presentation works!</p>
+<!-- Start: Task Container Section  -->
+<div class="overlay-container bg-white rounded-3 p-5">
+
+    <!-- Heading  -->
+    <h3 class="text-center text-primary"> Task Form </h3>
+
+    <!-- Start: Form Section  -->
+    <form class="row py-3" [formGroup]="taskGroup" (ngSubmit)="onSubmit()">
+
+        <!-- Task Name  -->
+        <div class="col-12 mb-3">
+            <label for="name" class="form-label required"> Task Name </label>
+            <input type="text" name="name" id="name" class="form-control" formControlName="taskName" 
+            [ngClass]="{'border-danger' : getControls['taskName'].touched && getControls['taskName'].invalid}">
+            <span class="text-danger"
+                *ngIf="getControls['taskName']?.errors?.['required'] && getControls['taskName'].touched"> This Field is
+                required </span>
+                <span class="text-danger" *ngIf="getControls['taskName']?.errors?.['maxlength']"> Max should be 30
+                    Characters </span>
+        </div>
+
+        <!-- Priority  -->
+        <div class="col-6 mb-3">
+            <label for="priority" class="form-label required"> Priority </label>
+            <select class="form-select" formControlName="priority">
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">HIgh</option>
+            </select>
+            <span class="text-danger"
+                *ngIf="getControls['priority']?.errors?.['required'] && getControls['priority'].touched"> This Field is
+                required </span>
+        </div>
+
+        <!-- Status  -->
+        <div class="col-6 mb-3">
+            <label for="status" class="form-label required"> Task status </label>
+            <select class="form-select" formControlName="status">
+                <option value="1">To Do</option>
+                <option value="2">In Progress</option>
+            </select>
+            <span class="text-danger"
+                *ngIf="getControls['status']?.errors?.['required'] && getControls['status'].touched"> This Field is
+                required </span>
+        </div>
+
+        <!-- Deadline  -->
+        <div class="col-6 mb-3">
+            <label for="deadline" class="form-label required"> Due Date </label>
+            <input type="date" name="deadline" id="deadline" class="form-control" formControlName="deadline">
+            <span class="text-danger"
+                *ngIf="getControls['deadline']?.errors?.['required'] && getControls['deadline'].touched"> This Field is
+                required </span>
+        </div>
+
+        <!-- Employees -->
+        <div class="mb-3 col-12">
+            <label for="employee" class="form-label required"> Employees </label>
+            <ng-multiselect-dropdown #multiSelect [settings]="settings" [data]="Employees" formControlName="team">
+            </ng-multiselect-dropdown>
+        </div>
+
+        <!-- Steps  -->
+        <div class="col-12" formArrayName="steps" *ngFor="let m of this.formarr('steps').controls; let i = index">
+            <div class="row" [formGroupName]="i">
+                <div class="mb-3 col-12 col-sm-6">
+                    <label for="stepName" class="form-label required"> Step-{{i+1}} Name </label>
+                    <input type="text" id="stepName" name="stepName" class="form-control" formControlName="stepName">
+                </div>
+
+                <div class="mb-3 col-12 col-sm-6">
+                    <label for="stepStatus" class="form-label required"> Step Status </label>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <select class="form-select" aria-label="Default select example" id="stepStatus"
+                            name="stepStatus" formControlName="stepStatus">
+                            <option value="0">Pending</option>
+                            <option value="1">Done</option>
+                        </select>
+                        <button class="btn btn-danger text-white ms-2" type="button" (click)="removeStep(i)"> <i
+                                class="bx bx-trash"></i> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary w-100 text-white" type="button" (click)="onAdd()"> + Add
+            </button>
+        </div>
+
+        <!-- Button Functionality  -->
+        <div class="d-flex justify-content-end align-items-center gap-3 pt-3">
+            <button type="reset" class="btn btn-danger text-white"> Reset </button>
+            <button type="submit" class="btn btn-primary text-white" [disabled]="!taskGroup.valid"> Submit </button>
+        </div>
+    </form>
+    <!-- End: Form Section  -->
+</div>
+<!-- End: Task Container Section  -->

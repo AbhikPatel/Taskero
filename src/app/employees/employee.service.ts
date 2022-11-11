@@ -24,14 +24,6 @@ export class EmployeeService {
   }
 
   /**
-   * @name getEmployees
-   * @returns get all the data of Employees
-   */
-  public getEmployees():Observable<employeeModel[]>{
-    return this.http.get<employeeModel[]>(`${this.api}/employees`);
-  }
-
-  /**
    * @name deleteEmployee
    * @param id 
    * @returns deletes the employee whit the required id

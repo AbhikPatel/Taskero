@@ -7,7 +7,7 @@ import { employeeModel } from './employee.model';
 export class FilterPipe implements PipeTransform {
 
   transform(value: employeeModel[], searchTerm: string): any {
-    return value.filter((data:any) => data.fullname.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
+    return value.filter((data:any) => data.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
   }
 
 }
