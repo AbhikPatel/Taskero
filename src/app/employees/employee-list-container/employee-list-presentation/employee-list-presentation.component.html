@@ -8,7 +8,10 @@
     <div class="d-flex justify-content-between align-items-center py-3">
         <input type="email" class="form-control w-50" id="search" placeholder="Search By Name" [(ngModel)]="searchText" autocomplete="off">
         <div>
-            <button class="btn btn-primary me-3" (click)="onFilter()"> Filter </button>
+            <button class="btn btn-primary me-3 position-relative" (click)="onFilter()"> 
+                Filter 
+                <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle" *ngIf="dot"></span>
+            </button>
             <button class="btn btn-primary" (click)="onAdd()"> + Add Employee </button>
         </div>
     </div>
