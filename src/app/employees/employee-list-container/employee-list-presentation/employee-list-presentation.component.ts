@@ -11,8 +11,10 @@ import { EmployeeListPresenterService } from '../employee-list-presenter/employe
 export class EmployeeListPresentationComponent implements OnInit {
 
   @Input() public set employeesData(v: employeeModel[] | null) {
-    if (v)
+    if (v){
       this._employeesData = v;
+      this.newData = v
+    }
     
   }
   public get employeesData(): employeeModel[] {
@@ -27,20 +29,27 @@ export class EmployeeListPresentationComponent implements OnInit {
   private _employeesData !: employeeModel[];
   public editId!: number;
   public searchText: string;
+  public filterData!:employeeModel[];
+  public dot:boolean;
+  public newData:employeeModel[];
 
   constructor(
     private service: EmployeeListPresenterService,
+    private cdr:ChangeDetectorRef
     ) {
     this.emitEmployeesData = new EventEmitter();
     this.emitId = new EventEmitter();
     this.emitUpdateEmployee = new EventEmitter();
-    this.searchText = '';
-  }
 
+    this.searchText = '';
+    this.newData = [];
+    this.dot = false;
+  }
+  
   ngOnInit(): void {
     this.prop();
   }
-
+  
   /**
    * @name prop
    * @description This method is called in ngOnInit
@@ -55,8 +64,14 @@ export class EmployeeListPresentationComponent implements OnInit {
     })
 
     this.service.filterForm$.subscribe((data:any) => {
-      console.log(data);
-      this._employeesData = data
+      this.employeesData = data
+      this.cdr.markForCheck();
+      this.dot = true;
+
+      if(data.length === 0){
+        console.log(this.newData);
+        this.dot = false
+      }
     })
   }
 
@@ -93,6 +108,6 @@ export class EmployeeListPresentationComponent implements OnInit {
    * @description on click on filter
    */
   public onFilter() {
-    this.service.openFilterOverlay(this._employeesData);
+    this.service.openFilterOverlay(this.employeesData);
   }
 }
