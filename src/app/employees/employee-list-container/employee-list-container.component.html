@@ -1,0 +1,6 @@
+<app-employee-list-presentation
+    (emitEmployeesData)="emitEmployeesData($event)"
+    [employeesData]="getEmployeesData$ | async"
+    (emitId)="emitId($event)"
+    (emitUpdateEmployee)="emitUpdateEmployee($event)"
+></app-employee-list-presentation>

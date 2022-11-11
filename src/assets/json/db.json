@@ -1,0 +1,81 @@
+{
+  "employees": [
+    {
+      "fullname": "Abhishek Patel",
+      "age": 23,
+      "city": "Valsad",
+      "gender": "Male",
+      "id": 1
+    },
+    {
+      "fullname": "Aman Patel",
+      "age": 22,
+      "city": "Vapi",
+      "gender": "Male",
+      "id": 2
+    },
+    {
+      "fullname": "Mrunal Patel",
+      "age": 38,
+      "city": "Valsad",
+      "gender": "Male",
+      "id": 3
+    },
+    {
+      "fullname": "Aayushi Parmar",
+      "age": 22,
+      "city": "Valsad",
+      "gender": "Female",
+      "id": 4
+    },
+    {
+      "fullname": "Pooja Manvani",
+      "age": 23,
+      "city": "Surat",
+      "gender": "Female",
+      "id": 5
+    },
+    {
+      "fullname": "Mehul Patel",
+      "age": 21,
+      "city": "Dungri",
+      "gender": "Male",
+      "id": 6
+    },
+    {
+      "fullname": "Tanmay Patel",
+      "age": 45,
+      "city": "Surat",
+      "gender": "Male",
+      "id": 7
+    },
+    {
+      "fullname": "Jigar Bhanushali",
+      "age": 24,
+      "city": "Valsad",
+      "gender": "Male",
+      "id": 8
+    },
+    {
+      "fullname": "Viral Patel",
+      "age": 28,
+      "city": "Dungri",
+      "gender": "Male",
+      "id": 9
+    },
+    {
+      "fullname": "Nirali Tandel",
+      "age": 21,
+      "city": "Valsad",
+      "gender": "Female",
+      "id": 10
+    },
+    {
+      "fullname": "Shreya Patel",
+      "age": 21,
+      "city": "Valsad",
+      "gender": "Female",
+      "id": 11
+    }
+  ]
+}

@@ -10,9 +10,7 @@ export class SidebarComponent implements OnInit {
   public user:any;
 
   constructor(private oAuthService:OauthService) { 
-    oAuthService.userProfile.subscribe((userInfo) => {
-      this.user = userInfo
-    })
+    oAuthService.userProfile.subscribe((userInfo) => this.user = userInfo)
   }
 
   ngOnInit(): void {

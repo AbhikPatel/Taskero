@@ -8,7 +8,7 @@
         <h1 class="logo-name text-center"> Tas<span class="text-primary">kero </span> </h1>
 
         <!-- Profile Section  -->
-        <div class="d-flex flex-column align-items-center py-3 border-2 border-bottom">
+        <div class="d-flex flex-column align-items-center py-3 border-1 border-bottom">
             <figure>
                 <img src="{{user?.info?.picture}}" class="profile-img rounded-circle" alt="">
             </figure>
@@ -16,12 +16,12 @@
         </div>
 
         <!-- Pages Section  -->
-        <div class="py-3 border-2 border-bottom">
+        <div class="py-3 border-1 border-bottom">
             <h3 class="fs-5"> Pages </h3>
             
             <ul class="nav flex-column">
                 <li class="nav-item" *ngFor="let nav of navLink">
-                    <a class="nav-link cursor-pointer d-flex align-items-center my-1 rounded-2" aria-current="page">
+                    <a class="nav-link cursor-pointer d-flex align-items-center my-1 rounded-2" routerLink="{{nav.route}}" routerLinkActive="active"  aria-current="page">
                         <i class='bx {{nav.classname}} fs-5 mb-1 me-2'></i> 
                         <span> {{nav.text}} </span>
                     </a>
@@ -47,7 +47,7 @@
     <!-- End : Upper Section  -->
 
     <!-- Start: Lower Section  -->
-    <div class="lower-section mb-5">
+    <div class="lower-section mb-3">
         <div class="log-out d-flex align-items-center" (click)="onLogout()">
             <i class='bx bx-exit fs-5 me-2' ></i>
             <span class="cursor-pointer"> Log Out </span>

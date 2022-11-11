@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Angular CDK Overlay 
+@import '@angular/cdk/overlay-prebuilt.css';
+
 // Project base and component style import
 @import '~/src/assets/scss/base/index';
 

@@ -1,0 +1,41 @@
+<!-- Start:Filter Overlay Section  -->
+<div class="overlay-container p-5 bg-white rounded-3">
+
+    <!-- form heading  -->
+    <h3 class="text-center text-primary"> Filter Form </h3>
+
+    <!-- Start: Form Section  -->
+    <form class="row pt-3" [formGroup]="filterGroup" (ngSubmit)="onSubmit()">
+
+        <!-- Age  -->
+        <div class="col-6 mb-3">
+            <label for="age" class="form-label"> Age </label>
+            <input type="number" class="form-control" id="age" name="age" formControlName="age">
+        </div>
+
+        <!-- City  -->
+        <div class="col-6 mb-3">
+            <label for="city" class="form-label"> City </label>
+            <input type="text" class="form-control" id="city" name="city" formControlName="city">
+        </div>
+
+        <!-- Gender  -->
+        <div class="col-6 mb-3">
+            <label for="gender" class="form-label"> Gender </label>
+            <div>
+                <input type="radio" name="gender" id="male" value="Male" class="form-check-input" formControlName="gender">
+                <label for="male" class="form-check-label mx-3 cursor-pointer"> Male </label>
+                <input type="radio" name="gender" id="female" value="Female" class="form-check-input" formControlName="gender">
+                <label for="female" class="form-check-label mx-3 cursor-pointer"> Female </label>
+            </div>
+        </div>
+
+        <!-- BUtton Functionaly  -->
+        <div class="d-flex align-items-center justify-content-end gap-3">
+            <button type="reset" class="btn btn-danger text-white"> Reset </button>
+            <button type="submit" class="btn btn-primary text-white"> Submit </button>
+        </div>
+    </form>
+    <!-- End: Form Section  -->
+</div>
+<!-- End:Filter Overlay Section  -->

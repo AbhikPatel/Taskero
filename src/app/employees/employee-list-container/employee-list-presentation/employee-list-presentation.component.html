@@ -1,0 +1,48 @@
+<!-- Start: Employee Container  -->
+<div class="h-100 p-4">
+
+    <!-- Heading  -->
+    <h3 class="text-primary"> Employees </h3>
+
+    <!-- Btn Functionality  -->
+    <div class="d-flex justify-content-between align-items-center py-3">
+        <input type="email" class="form-control w-50" id="search" placeholder="Search By Name" [(ngModel)]="searchText" autocomplete="off">
+        <div>
+            <button class="btn btn-primary me-3 position-relative" (click)="onFilter()"> 
+                Filter 
+                <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle" *ngIf="dot"></span>
+            </button>
+            <button class="btn btn-primary" (click)="onAdd()"> + Add Employee </button>
+        </div>
+    </div>
+
+    <!-- Start: Table Section  -->
+    <div class="table-container rounded-3 overflow-hidden pt-4">
+        <table class="table table-striped border border-1">
+            <thead>
+                <tr style="font-size: 0.8rem;">
+                    <th>SR. NO.</th>
+                    <th>NAME</th>
+                    <th>GENDER</th>
+                    <th>AGE</th>
+                    <th>CITY</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of employeesData | filter:searchText , let i = index">
+                    <th>{{i + 1}}</th>
+                    <td>{{data.fullname}}</td>
+                    <td>{{data.gender}}</td>
+                    <td>{{data.age}}</td>
+                    <td>{{data.city}}</td>
+                    <td> 
+                        <span class="list-text cursor-pointer" (click)="onEdit(data.id)"><i class='bx bxs-edit me-2'></i></span> 
+                        <span class="list-text cursor-pointer" (click)="onDelete(data.id)" ><i class='bx bxs-trash'></i></span> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- End: Employee Container  -->
