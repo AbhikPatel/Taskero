@@ -15,13 +15,6 @@
       "id": 3
     },
     {
-      "name": "Aayushi Parmar",
-      "age": 22,
-      "city": "Valsad",
-      "gender": "Female",
-      "id": 4
-    },
-    {
       "name": "Pooja Manvani",
       "age": 23,
       "city": "Surat",
@@ -69,30 +62,114 @@
       "city": "Valsad",
       "gender": "Female",
       "id": 11
+    },
+    {
+      "name": "Abhishek Patel",
+      "age": 23,
+      "city": "Valsad",
+      "gender": "Male",
+      "id": 12
     }
   ],
-
-  "task":[
+  "task": [
     {
-      "id":1,
-      "taskCol":"TODO",
-      "taskCard":[
-
+      "id": 1,
+      "taskCol": "TODO",
+      "taskCard": [
+        {
+          "taskName": "Party at Daman",
+          "deadline": "2022-11-23",
+          "priority": 3,
+          "status": 0,
+          "team": [
+            {
+              "id": 3,
+              "name": "Mrunal Patel"
+            },
+            {
+              "id": 2,
+              "name": "Aman Patel"
+            },
+            {
+              "id": 12,
+              "name": "Abhishek Patel"
+            }
+          ],
+          "steps": [
+            {
+              "stepName": "take Camera",
+              "stepStatus": "0"
+            },
+            {
+              "stepName": "buy pass",
+              "stepStatus": "0"
+            }
+          ]
+        }
       ]
     },
     {
-      "id":2,
-      "taskCol":"IN PROGRESS",
-      "taskCard":[
-        
+      "id": 2,
+      "taskCol": "IN PROGRESS",
+      "taskCard": [
+        {
+          "taskName": "Photoshoot at office",
+          "deadline": "2022-11-29",
+          "priority": 2,
+          "status": 1,
+          "team": [
+            {
+              "id": 3,
+              "name": "Mrunal Patel"
+            }
+          ],
+          "steps": [
+            {
+              "stepName": "take Camera",
+              "stepStatus": "0"
+            }
+          ]
+        },
+        {
+          "taskName": "Trip to Kedranath",
+          "deadline": "2022-11-30",
+          "priority": 2,
+          "status": 1,
+          "team": [
+            {
+              "id": 3,
+              "name": "Mrunal Patel"
+            },
+            {
+              "id": 2,
+              "name": "Aman Patel"
+            },
+            {
+              "id": 8,
+              "name": "Jigar Bhanushali"
+            },
+            {
+              "id": 9,
+              "name": "Viral Patel"
+            },
+            {
+              "id": 12,
+              "name": "Abhishek Patel"
+            }
+          ],
+          "steps": [
+            {
+              "stepName": "take Camera",
+              "stepStatus": "1"
+            }
+          ]
+        }
       ]
     },
     {
-      "id":3,
-      "taskCol":"COMPLETED",
-      "taskCard":[
-        
-      ]
+      "id": 3,
+      "taskCol": "COMPLETED",
+      "taskCard": []
     }
   ]
 }

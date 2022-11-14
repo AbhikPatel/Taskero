@@ -17,16 +17,16 @@ export class taskModule{
 export class cardModule{
     taskName:string
     deadline:Date
-    priority:string
-    status:string
+    priority:number
+    status:number
     team:Employees[]
     steps:Steps[]
     
     constructor(
         taskName:string,
         deadline:Date,
-        priority:string,
-        status:string,
+        priority:number,
+        status:number,
         team:Employees[],
         steps:Steps[],
         ){

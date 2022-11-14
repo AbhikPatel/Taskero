@@ -12,8 +12,53 @@
 
     <!-- Start: Task Cards Section  -->
     <div class="row py-3">
-        <div class="col-4">
-            <span class="text-muted"> TODO (5) </span>
+        <div class="col-12 col-lg-6 col-xxl-4" *ngFor="let task of taskData">
+
+            <!-- Col Heading  -->
+            <span class="text-muted"> {{task.taskCol}} ({{task.taskCard.length}}) </span>
+
+            <!-- Start: Card Section  -->
+            <div class="card shadow my-3 cursor-pointer" *ngFor="let card of task.taskCard">
+                <div class="card-body" (click)="onCard(card.steps)">
+
+                    <!-- Card Title  -->
+                    <div class="card-title d-flex"> 
+                        <h2> {{card.taskName}} </h2> 
+                        <span *ngIf="card.priority === 3" class="high tag ms-3"> High </span> 
+                        <span *ngIf="card.priority === 2" class="medium tag ms-3"> Medium </span> 
+                        <span *ngIf="card.priority === 1" class="low tag ms-3"> Low </span> 
+                    </div>
+
+                    <!-- ProgressBar  -->
+                    <div class="progress-container pt-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center">
+                                <i class='bx bx-list-ul'></i>
+                                <span> Progress </span>
+                            </div>
+                            <span> {{completedTasks(card.steps)}}/{{card.steps.length}} </span>
+                        </div>
+                        <progressbar [max]="100" [value]="progress(card.steps)" [type]="barColor" [striped]="true" [animate]="true"><i>{{progress(card.steps)}}%</i></progressbar>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-between pt-3">
+                        
+                        <!-- Employees  -->
+                        <div class="employees-container position-relative">
+                            <img src="../../../../assets/images/John Collins.jpg" class="position-absolute team-profile rounded-circle" alt="">
+                        </div>
+
+                        <!-- Due Date  -->
+                        <span class="pt-3"> {{dueDate(card.deadline)}} Days remaining </span>
+                    </div>
+
+                </div>
+            </div>
+            <!-- End: Card Section  -->
+
+            <div *ngIf="task.taskCard.length === 0" class="empty my-3 rounded-2 d-flex justify-content-center align-items-center">
+                <span class="text-muted"> No Task Added </span>
+            </div>
         </div>
     </div>
     <!-- End: Task Cards Section  -->

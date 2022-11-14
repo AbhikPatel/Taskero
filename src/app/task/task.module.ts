@@ -1,5 +1,6 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
 import { OverlayModule } from '@angular/cdk/overlay';
 import { HttpClientModule } from '@angular/common/http';
@@ -9,13 +10,16 @@ import { TaskContainerComponent } from './task-container/task-container.componen
 import { TaskFormPresentationComponent } from './task-container/task-form-presentation/task-form-presentation.component';
 import { TaskViewPresentationComponent } from './task-container/task-view-presentation/task-view-presentation.component';
 import { TaskRoutingModule } from './task-routing.module';
+import { TaskService } from './task.service';
+import { TaskProgressPresentationComponent } from './task-container/task-progress-presentation/task-progress-presentation.component';
 
 
 @NgModule({
   declarations: [
     TaskContainerComponent,
     TaskViewPresentationComponent,
-    TaskFormPresentationComponent
+    TaskFormPresentationComponent,
+    TaskProgressPresentationComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +27,12 @@ import { TaskRoutingModule } from './task-routing.module';
     HttpClientModule,
     OverlayModule,
     NgMultiSelectDropDownModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ProgressbarModule
+  ],
+  providers:[
+    TaskService,
+    DatePipe
   ]
 })
 export class TaskModule { }

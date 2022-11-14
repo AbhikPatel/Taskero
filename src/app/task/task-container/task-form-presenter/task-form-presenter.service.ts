@@ -35,6 +35,8 @@ export class TaskFormPresenterService {
    * @param data 
    */
   public getFormData(data:cardModule){
+    data.priority = Math.round(data.priority)
+    data.status = Math.round(data.status)
     this.getData.next(data)
   }
 }

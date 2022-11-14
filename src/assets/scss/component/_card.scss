@@ -1,0 +1,35 @@
+.tag{
+    padding: 3px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    height: 25px;
+}
+
+.high{
+    background-color: lighten($danger, 40);
+    color: $danger;
+}
+
+.medium{
+    background-color: lighten($warning, 40);
+    color: $warning;
+}
+
+.low{
+    background-color: lighten($success, 40);
+    color: $success;
+}
+
+.team-profile{
+    width: 40px;
+}
+
+.employees-container{
+    margin-top: -30px;
+}
+
+.empty{
+    border: 2px solid #a1a1a1;
+    height: 200px;
+    border-style: dashed;
+}

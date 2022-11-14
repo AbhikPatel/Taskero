@@ -23,9 +23,9 @@
         <div class="col-6 mb-3">
             <label for="priority" class="form-label required"> Priority </label>
             <select class="form-select" formControlName="priority">
-                <option value="1">Low</option>
-                <option value="2">Medium</option>
-                <option value="3">HIgh</option>
+                <option value=1>Low</option>
+                <option value=2>Medium</option>
+                <option value=3>HIgh</option>
             </select>
             <span class="text-danger"
                 *ngIf="getControls['priority']?.errors?.['required'] && getControls['priority'].touched"> This Field is
@@ -36,8 +36,8 @@
         <div class="col-6 mb-3">
             <label for="status" class="form-label required"> Task status </label>
             <select class="form-select" formControlName="status">
-                <option value="1">To Do</option>
-                <option value="2">In Progress</option>
+                <option value="0">To Do</option>
+                <option value="1">In Progress</option>
             </select>
             <span class="text-danger"
                 *ngIf="getControls['status']?.errors?.['required'] && getControls['status'].touched"> This Field is
@@ -90,7 +90,7 @@
         <!-- Button Functionality  -->
         <div class="d-flex justify-content-end align-items-center gap-3 pt-3">
             <button type="reset" class="btn btn-danger text-white"> Reset </button>
-            <button type="submit" class="btn btn-primary text-white" [disabled]="!taskGroup.valid"> Submit </button>
+            <button type="submit" class="btn btn-primary text-white"> Submit </button>
         </div>
     </form>
     <!-- End: Form Section  -->
