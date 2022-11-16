@@ -19,15 +19,28 @@
 
             <!-- Start: Card Section  -->
             <div class="card shadow my-3 cursor-pointer" *ngFor="let card of task.taskCard">
-                <div class="card-body" (click)="onCard(card.steps)">
+                <div class="card-body position-relative" (click)="onCard(card.steps, card)">
+                    <div class="position-absolute" style="right: 10px;" (click)="onMenu(card.taskName);$event.stopPropagation()">
+                        <i class='bx bx-dots-vertical-rounded fs-4'></i>
+                    </div>
+
+                    <!-- Menu Section  -->
+                    <div class="menu-container position-absolute bg-white border border-1" [ngClass]="card.taskName === menu ? 'd-block' : 'd-none'">
+                        <div class="menu-list p-2 border border-1 w-100" (click)="onCreate(card);$event.stopPropagation()"> Edit </div>
+                        <div class="menu-list p-2 border border-1 w-100" (click)="onDelete(card.taskName, card.status);$event.stopPropagation()"> Delete </div>
+                        <div class="menu-list p-2 border border-1 w-100"> Add to Favorite </div>
+                    </div>
 
                     <!-- Card Title  -->
                     <div class="card-title d-flex"> 
-                        <h2> {{card.taskName}} </h2> 
+                        <h2 class="card-heading text-truncate" title="{{card.taskName}}"> {{card.taskName}} </h2> 
+                        <!-- <span> <i class='bx bxs-star text-warning'></i> </span> -->
                         <span *ngIf="card.priority === 3" class="high tag ms-3"> High </span> 
                         <span *ngIf="card.priority === 2" class="medium tag ms-3"> Medium </span> 
                         <span *ngIf="card.priority === 1" class="low tag ms-3"> Low </span> 
                     </div>
+                    
+                    <!-- Star  -->
 
                     <!-- ProgressBar  -->
                     <div class="progress-container pt-3">
@@ -56,6 +69,7 @@
             </div>
             <!-- End: Card Section  -->
 
+            <!-- No Task Added  -->
             <div *ngIf="task.taskCard.length === 0" class="empty my-3 rounded-2 d-flex justify-content-center align-items-center">
                 <span class="text-muted"> No Task Added </span>
             </div>

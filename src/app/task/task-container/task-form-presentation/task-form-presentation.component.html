@@ -25,7 +25,7 @@
             <select class="form-select" formControlName="priority">
                 <option value=1>Low</option>
                 <option value=2>Medium</option>
-                <option value=3>HIgh</option>
+                <option value=3>High</option>
             </select>
             <span class="text-danger"
                 *ngIf="getControls['priority']?.errors?.['required'] && getControls['priority'].touched"> This Field is
@@ -47,7 +47,7 @@
         <!-- Deadline  -->
         <div class="col-6 mb-3">
             <label for="deadline" class="form-label required"> Due Date </label>
-            <input type="date" name="deadline" id="deadline" class="form-control" formControlName="deadline">
+            <input type="date" name="deadline" id="deadline" class="form-control" formControlName="deadline" min="16-11-2022">
             <span class="text-danger"
                 *ngIf="getControls['deadline']?.errors?.['required'] && getControls['deadline'].touched"> This Field is
                 required </span>
@@ -62,7 +62,7 @@
 
         <!-- Steps  -->
         <div class="col-12" formArrayName="steps" *ngFor="let m of this.formarr('steps').controls; let i = index">
-            <div class="row" [formGroupName]="i">
+            <div class="row" *ngIf="!editData" [formGroupName]="i">
                 <div class="mb-3 col-12 col-sm-6">
                     <label for="stepName" class="form-label required"> Step-{{i+1}} Name </label>
                     <input type="text" id="stepName" name="stepName" class="form-control" formControlName="stepName">
@@ -82,6 +82,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Add Button  -->
         <div class="col-12">
             <button class="btn btn-primary w-100 text-white" type="button" (click)="onAdd()"> + Add
             </button>
@@ -90,7 +92,7 @@
         <!-- Button Functionality  -->
         <div class="d-flex justify-content-end align-items-center gap-3 pt-3">
             <button type="reset" class="btn btn-danger text-white"> Reset </button>
-            <button type="submit" class="btn btn-primary text-white"> Submit </button>
+            <button type="submit" class="btn btn-primary text-white" [disabled]="!taskGroup.valid"> Submit </button>
         </div>
     </form>
     <!-- End: Form Section  -->

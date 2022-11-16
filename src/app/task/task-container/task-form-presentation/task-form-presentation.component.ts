@@ -11,21 +11,22 @@ import { TaskFormPresenterService } from '../task-form-presenter/task-form-prese
 })
 export class TaskFormPresentationComponent implements OnInit {
 
-  @Input() public Employees!:any[];
+  @Input() public Employees!: any[];
+  @Input() public editData!: cardModule;
 
-  @Output() public emitFormData:EventEmitter<cardModule>
+  @Output() public emitFormData: EventEmitter<cardModule>
   @ViewChild('multiSelect') multiSelect: any;
 
-  public taskGroup:FormGroup
-  public settings:any = {}
-  
+  public taskGroup: FormGroup
+  public settings: any = {}
+
   constructor(
     private service: TaskFormPresenterService,
-    private fb:FormBuilder
-    ) { 
-      this.taskGroup = this.service.getFormGroup();
-      this.emitFormData = new EventEmitter();
-    }
+    private fb: FormBuilder
+  ) {
+    this.taskGroup = this.service.getFormGroup();
+    this.emitFormData = new EventEmitter();
+  }
 
   ngOnInit(): void {
     this.prop();
@@ -55,18 +56,38 @@ export class TaskFormPresentationComponent implements OnInit {
       showSelectedItemsAtTop: false,
       defaultOpen: false,
     }
-    
+
     this.onAdd();
 
-    this.service.getData$.subscribe((data:cardModule) => this.emitFormData.emit(data))
+    this.service.getData$.subscribe((data: cardModule) => this.emitFormData.emit(data))
+
+    if (this.editData) {
+      this.taskGroup.patchValue(this.editData)
+      this.taskGroup.get('taskName')?.disable()
+      
+      if(this.editData.status === 2)
+        this.taskGroup.get('status')?.disable()
+
+    }
   }
 
   /**
    * @name onSubmit
    * @description This method is call when the form is submitted
    */
-  public onSubmit(){
-    this.service.getFormData(this.taskGroup.value)
+  public onSubmit() {
+    if (this.editData) {
+      let obj = { taskName: this.editData.taskName }
+      this.taskGroup.value.steps = this.editData.steps
+      let formData = Object.assign(obj, this.taskGroup.value)
+      if(this.editData.status === 2){
+        let obj = {status: 2}
+        formData = Object.assign(obj, formData)
+      }
+      this.service.getFormData(formData)
+    } else 
+    
+      this.service.getFormData(this.taskGroup.value)
   }
 
   /**
@@ -107,7 +128,7 @@ export class TaskFormPresentationComponent implements OnInit {
    * @name getControls
    * @description get controls of the form
    */
-  public get getControls(){
+  public get getControls() {
     return this.taskGroup['controls']
   }
 

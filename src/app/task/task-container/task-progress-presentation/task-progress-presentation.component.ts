@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Steps } from '../../task.model';
 import { TaskProgressPresenterService } from '../task-progress-presenter/task-progress-presenter.service';
@@ -12,15 +12,26 @@ import { TaskProgressPresenterService } from '../task-progress-presenter/task-pr
 export class TaskProgressPresentationComponent implements OnInit {
 
   @Input() public steps!:Steps[];
+  @Output() public emitStepsData:EventEmitter<Steps[]>
 
   public stepGroup:FormGroup;
   public barColor: 'success' | 'info' | 'warning' | 'danger' = 'info';
 
   constructor(private service:TaskProgressPresenterService) { 
     this.stepGroup = this.service.builder()
+    this.emitStepsData = new EventEmitter();
   }
 
   ngOnInit(): void {
+    this.prop();
+  }
+
+  /**
+   * @name prop
+   * @description This method is called in ngOnInit
+   */
+  public prop(){
+    this.service.stepData$.subscribe((data:Steps[]) => this.emitStepsData.emit(data))
   }
 
   /**
@@ -44,7 +55,7 @@ export class TaskProgressPresentationComponent implements OnInit {
     let total = data.length
     let progress = (complete.length*100)/total
 
-    if(progress < 25)
+    if(progress < 26)
       this.barColor = 'danger'
     else if(progress > 26 && progress < 100)
       this.barColor = 'warning'
@@ -54,6 +65,10 @@ export class TaskProgressPresentationComponent implements OnInit {
     return Math.round(progress)
   }
 
+  /**
+   * @name onAdd
+   * @description To add another step
+   */
   public onAdd(){
     let obj = {stepStatus : '0'}
     let data = Object.assign(obj, this.stepGroup.value)
@@ -61,15 +76,48 @@ export class TaskProgressPresentationComponent implements OnInit {
     this.stepGroup.reset();
   }
 
+  /**
+   * @name onDel
+   * @param id 
+   * @description This one deletes the step as per id
+   */
   public onDel(id:number){
     this.steps.splice(id,1)
     this.progress(this.steps)
   }
 
-  public status(data:any){
-    if(data.stepStatus === '0')
-      return false
-    else
+  /**
+   * @name status
+   * @param data 
+   * @returns true or false
+   * @description For checkbox values
+   */
+  public status(data:any){   
+    if(data.stepStatus === '1')
       return true
+    else
+      return false
+  }
+
+  /**
+   * @name onCheck
+   * @param data 
+   * @description this will check the checkbox and updates the progress bar
+   */
+  public onCheck(data:any){
+    if(data.stepStatus === '0')
+      data.stepStatus = '1'
+    else
+      data.stepStatus = '0'
+      
+    this.progress(this.steps)
+  }
+
+  /**
+   * @name onSubmit
+   * @description on submit final value will be send to the service
+   */
+  public onSubmit(){
+    this.service.getData(this.steps)
   }
 }

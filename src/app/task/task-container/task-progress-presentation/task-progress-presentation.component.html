@@ -30,11 +30,16 @@
     <!-- Steps Section  -->
     <div class="input-group mb-3" *ngFor="let data of steps, let i = index">
         <div class="input-group-text">
-            <input class="form-check-input mt-0" type="checkbox" [value]="status(steps)"
-                aria-label="Checkbox for following text input">
+            <input class="form-check-input mt-0" type="checkbox" value="" [checked]="status(steps[i])"
+                aria-label="Checkbox for following text input" (click)="onCheck(steps[i])">
         </div>
-        <input type="text" class="form-control" aria-label="Text input with checkbox" [value]="data.stepName">
+        <input type="text" class="form-control" aria-label="Text input with checkbox" [disabled]="true" [value]="data.stepName">
         <button type="button" class="btn btn-danger text-white" (click)="onDel(i)" > <i class="bx bx-trash"></i> </button>
+    </div>
+
+    <!-- Submit Button  -->
+    <div class="d-flex justify-content-end pt-3">
+        <button class="btn btn-primary text-white" (click)="onSubmit()"> Submit </button>
     </div>
     <!-- End: Form Section  -->
 
