@@ -75,80 +75,23 @@
     {
       "id": 1,
       "taskCol": "TODO",
-      "taskCard": [
-        {
-          "taskName": "Party at Daman",
-          "deadline": "2022-11-30",
-          "priority": 3,
-          "status": 0,
-          "team": [
-            {
-              "id": 2,
-              "name": "Aman Patel"
-            },
-            {
-              "id": 3,
-              "name": "Mrunal Patel"
-            },
-            {
-              "id": 6,
-              "name": "Mehul Patel"
-            },
-            {
-              "id": 7,
-              "name": "Tanmay Patel"
-            },
-            {
-              "id": 8,
-              "name": "Jigar Bhanushali"
-            }
-          ],
-          "steps": [
-            {
-              "stepName": "take Camera",
-              "stepStatus": "1"
-            },
-            {
-              "stepName": "buy pass",
-              "stepStatus": "0"
-            }
-          ]
-        }
-      ]
+      "taskCard": []
     },
     {
       "id": 2,
       "taskCol": "IN PROGRESS",
-      "taskCard": [
-        {
-          "taskName": "Photoshoot at office",
-          "deadline": "2022-11-22",
-          "priority": 2,
-          "status": 1,
-          "team": [
-            {
-              "id": 3,
-              "name": "Mrunal Patel"
-            }
-          ],
-          "steps": [
-            {
-              "stepName": "take Camera",
-              "stepStatus": "0"
-            }
-          ]
-        }
-      ]
+      "taskCard": []
     },
     {
       "id": 3,
       "taskCol": "COMPLETED",
       "taskCard": [
         {
+          "favorite": false,
+          "taskName": "Party at Daman",
+          "deadline": "2022-11-22",
+          "priority": 3,
           "status": 2,
-          "taskName": "Party",
-          "deadline": "2022-12-20",
-          "priority": 1,
           "team": [
             {
               "id": 3,
@@ -157,6 +100,10 @@
             {
               "id": 2,
               "name": "Aman Patel"
+            },
+            {
+              "id": 6,
+              "name": "Mehul Patel"
             }
           ],
           "steps": [
@@ -167,14 +114,6 @@
             {
               "stepName": "buy pass",
               "stepStatus": "1"
-            },
-            {
-              "stepStatus": "1",
-              "stepName": "task1"
-            },
-            {
-              "stepStatus": "1",
-              "stepName": "task2"
             }
           ]
         }

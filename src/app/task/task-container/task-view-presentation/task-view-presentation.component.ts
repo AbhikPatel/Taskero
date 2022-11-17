@@ -132,4 +132,11 @@ export class TaskViewPresentationComponent implements OnInit {
     this._taskData[id].taskCard.splice(cardId, 1)
     this.emitData.emit(this._taskData[id])
   }
+
+  public onFav(card:cardModule){
+    card.favorite === true ? card.favorite = false : card.favorite = true
+
+    this.emitData.emit(this._taskData[card.status])
+    this.menu = ''
+  }
 }

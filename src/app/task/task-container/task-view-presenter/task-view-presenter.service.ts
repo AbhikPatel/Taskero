@@ -57,7 +57,9 @@ export class TaskViewPresenterService {
 
         this.FormData.next(finalData)
       } else {
-        taskData[data.status].taskCard.push(data)
+        let obj = {favorite: false}
+        let total = Object.assign(obj,data)
+        taskData[data.status].taskCard.push(total)
         let finalData = taskData[data.status]
         this.FormData.next(finalData)
       }
