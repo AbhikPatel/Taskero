@@ -19,6 +19,7 @@ export class cardModule{
     deadline:Date
     priority:number
     status:number
+    favorite:boolean
     team:Employees[]
     steps:Steps[]
     
@@ -27,6 +28,7 @@ export class cardModule{
         deadline:Date,
         priority:number,
         status:number,
+        favorite:boolean,
         team:Employees[],
         steps:Steps[],
         ){
@@ -36,6 +38,7 @@ export class cardModule{
             this.status = status
             this.team = team
             this.steps = steps
+            this.favorite = favorite
         }
 }
 

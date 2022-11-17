@@ -119,6 +119,11 @@
     {
       "id": 2,
       "taskCol": "IN PROGRESS",
+      "taskCard": []
+    },
+    {
+      "id": 3,
+      "taskCol": "COMPLETED",
       "taskCard": [
         {
           "taskName": "Photoshoot at office",
@@ -149,78 +154,8 @@
               "stepName": "task3"
             }
           ]
-        },
-        {
-          "status": 1,
-          "taskName": "Party",
-          "deadline": "2022-12-20",
-          "priority": 1,
-          "team": [
-            {
-              "id": 3,
-              "name": "Mrunal Patel"
-            },
-            {
-              "id": 2,
-              "name": "Aman Patel"
-            }
-          ],
-          "steps": [
-            {
-              "stepName": "take Camera",
-              "stepStatus": "1"
-            },
-            {
-              "stepName": "buy pass",
-              "stepStatus": "0"
-            },
-            {
-              "stepStatus": "0",
-              "stepName": "task1"
-            },
-            {
-              "stepStatus": "1",
-              "stepName": "task2"
-            }
-          ]
         }
-      ]
-    },
-    {
-      "id": 3,
-      "taskCol": "COMPLETED",
-      "taskCard": [
-        {
-          "taskName": "Abhishek",
-          "deadline": "2022-11-18",
-          "priority": 2,
-          "status": 2,
-          "team": [
-            {
-              "id": 2,
-              "name": "Aman Patel"
-            },
-            {
-              "id": 3,
-              "name": "Mrunal Patel"
-            },
-            {
-              "id": 6,
-              "name": "Mehul Patel"
-            }
-          ],
-          "steps": [
-            {
-              "stepName": "take Camera",
-              "stepStatus": "1"
-            },
-            {
-              "stepName": "buy pass",
-              "stepStatus": "1"
-            }
-          ]
-        }
-      ]
+      }
     }
   ]
 }
