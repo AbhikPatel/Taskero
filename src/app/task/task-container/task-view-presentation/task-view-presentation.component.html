@@ -28,13 +28,13 @@
                     <div class="menu-container position-absolute bg-white border border-1" [ngClass]="card.taskName === menu ? 'd-block' : 'd-none'">
                         <div class="menu-list p-2 border border-1 w-100" (click)="onCreate(card);$event.stopPropagation()"> Edit </div>
                         <div class="menu-list p-2 border border-1 w-100" (click)="onDelete(card.taskName, card.status);$event.stopPropagation()"> Delete </div>
-                        <div class="menu-list p-2 border border-1 w-100"> Add to Favorite </div>
+                        <div class="menu-list p-2 border border-1 w-100" (click)="onFav(card);$event.stopPropagation()"> Add to Favorite </div>
                     </div>
 
                     <!-- Card Title  -->
                     <div class="card-title d-flex"> 
                         <h2 class="card-heading text-truncate" title="{{card.taskName}}"> {{card.taskName}} </h2> 
-                        <!-- <span> <i class='bx bxs-star text-warning'></i> </span> -->
+                        <span *ngIf="card.favorite === true"> <i class='bx bxs-star text-warning'></i> </span>
                         <span *ngIf="card.priority === 3" class="high tag ms-3"> High </span> 
                         <span *ngIf="card.priority === 2" class="medium tag ms-3"> Medium </span> 
                         <span *ngIf="card.priority === 1" class="low tag ms-3"> Low </span> 
