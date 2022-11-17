@@ -119,6 +119,11 @@
     {
       "id": 2,
       "taskCol": "IN PROGRESS",
+      "taskCard": []
+    },
+    {
+      "id": 3,
+      "taskCol": "COMPLETED",
       "taskCard": [
         {
           "taskName": "Photoshoot at office",
@@ -147,43 +152,6 @@
             {
               "stepStatus": "0",
               "stepName": "task3"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "taskCol": "COMPLETED",
-      "taskCard": [
-        {
-          "favorite": false,
-          "taskName": "Party at Daman",
-          "deadline": "2022-11-22",
-          "priority": 3,
-          "status": 2,
-          "team": [
-            {
-              "id": 3,
-              "name": "Mrunal Patel"
-            },
-            {
-              "id": 2,
-              "name": "Aman Patel"
-            },
-            {
-              "id": 6,
-              "name": "Mehul Patel"
-            }
-          ],
-          "steps": [
-            {
-              "stepName": "take Camera",
-              "stepStatus": "1"
-            },
-            {
-              "stepName": "buy pass",
-              "stepStatus": "1"
             }
           ]
         }
