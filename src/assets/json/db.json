@@ -75,25 +75,18 @@
     {
       "id": 1,
       "taskCol": "TODO",
+      "taskCard": []
+    },
+    {
+      "id": 2,
+      "taskCol": "IN PROGRESS",
       "taskCard": [
         {
           "taskName": "Party at Daman",
-          "deadline": "2022-11-30",
-          "priority": 3,
-          "status": 0,
+          "deadline": "2022-12-31",
+          "priority": 1,
+          "status": 1,
           "team": [
-            {
-              "id": 2,
-              "name": "Aman Patel"
-            },
-            {
-              "id": 3,
-              "name": "Mrunal Patel"
-            },
-            {
-              "id": 6,
-              "name": "Mehul Patel"
-            },
             {
               "id": 7,
               "name": "Tanmay Patel"
@@ -101,25 +94,32 @@
             {
               "id": 8,
               "name": "Jigar Bhanushali"
+            },
+            {
+              "id": 12,
+              "name": "Abhishek Patel"
+            },
+            {
+              "id": 6,
+              "name": "Mehul Patel"
+            },
+            {
+              "id": 3,
+              "name": "Mrunal Patel"
             }
           ],
           "steps": [
             {
-              "stepName": "take Camera",
+              "stepName": "Take car key",
               "stepStatus": "0"
             },
             {
-              "stepName": "buy pass",
+              "stepName": "take Camera",
               "stepStatus": "0"
             }
           ]
         }
       ]
-    },
-    {
-      "id": 2,
-      "taskCol": "IN PROGRESS",
-      "taskCard": []
     },
     {
       "id": 3,
@@ -129,7 +129,7 @@
           "taskName": "Photoshoot at office",
           "deadline": "2022-11-22",
           "priority": 2,
-          "status": 1,
+          "status": 2,
           "team": [
             {
               "id": 3,
@@ -139,21 +139,22 @@
           "steps": [
             {
               "stepName": "take Camera",
-              "stepStatus": "0"
+              "stepStatus": "1"
             },
             {
-              "stepStatus": "0",
+              "stepStatus": "1",
               "stepName": "task1"
             },
             {
-              "stepStatus": "0",
+              "stepStatus": "1",
               "stepName": "task2"
             },
             {
-              "stepStatus": "0",
+              "stepStatus": "1",
               "stepName": "task3"
             }
-          ]
+          ],
+          "favorite": true
         }
       ]
     }

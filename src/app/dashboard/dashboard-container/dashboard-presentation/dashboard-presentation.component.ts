@@ -38,6 +38,8 @@ export class DashboardPresentationComponent implements OnInit {
    */
   public prop(){
     this.service.newTask$.subscribe((data:number) => this.report[2].count = data)
+
+    this.service.favorite.subscribe((data:number) => this.report[3].count = data)
   }
 
   public getData(data:any){
