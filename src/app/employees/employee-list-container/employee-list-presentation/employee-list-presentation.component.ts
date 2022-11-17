@@ -69,7 +69,6 @@ export class EmployeeListPresentationComponent implements OnInit {
       this.dot = true;
 
       if(data.length === 0){
-        console.log(this.newData);
         this.dot = false
       }
     })

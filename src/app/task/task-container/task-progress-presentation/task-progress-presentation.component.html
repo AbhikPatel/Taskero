@@ -1,0 +1,47 @@
+<!-- Start: Progress Overlay  -->
+<div class="overlay-container p-5 bg-white rounded-2">
+
+    <!-- Heading  -->
+    <h3 class="text-primary text-center"> Progress Status </h3>
+
+    <!-- Start: Form Section  -->
+
+    <!-- Progress Section  -->
+    <div class="progress-container pt-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <i class='bx bx-list-ul'></i>
+                <span> Progress </span>
+            </div>
+            <span> {{completedTasks(steps)}}/{{steps.length}} </span>
+        </div>
+        <progressbar [max]="100" [value]="progress(steps)" [type]="barColor" [striped]="true" [animate]="true">
+            <i>{{progress(steps)}}%</i></progressbar>
+    </div>
+
+    <!-- Form Section  -->
+    <form [formGroup]="stepGroup" class="pt-4" (ngSubmit)="onAdd()">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Add step" aria-describedby="button-addon2" formControlName="stepName">
+            <button class="btn btn-primary text-white" type="submit" [disabled]="!stepGroup.valid">+ Add</button>
+        </div>
+    </form>
+
+    <!-- Steps Section  -->
+    <div class="input-group mb-3" *ngFor="let data of steps, let i = index">
+        <div class="input-group-text">
+            <input class="form-check-input mt-0" type="checkbox" value="" [checked]="status(steps[i])"
+                aria-label="Checkbox for following text input" (click)="onCheck(steps[i])">
+        </div>
+        <input type="text" class="form-control" aria-label="Text input with checkbox" [disabled]="true" [value]="data.stepName">
+        <button type="button" class="btn btn-danger text-white" (click)="onDel(i)" > <i class="bx bx-trash"></i> </button>
+    </div>
+
+    <!-- Submit Button  -->
+    <div class="d-flex justify-content-end pt-3">
+        <button class="btn btn-primary text-white" (click)="onSubmit()"> Submit </button>
+    </div>
+    <!-- End: Form Section  -->
+
+</div>
+<!-- End: Progress Overlay  -->

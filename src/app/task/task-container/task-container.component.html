@@ -1,0 +1,5 @@
+<app-task-view-presentation
+    [employeeData]="getEmployees$|async"
+    [taskData]="getTasks$|async"
+    (emitData)="emitData($event)"
+></app-task-view-presentation>

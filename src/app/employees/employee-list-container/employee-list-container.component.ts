@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { GetDataService } from 'src/app/shared/get-data.service';
 import { employeeModel } from '../employee.model';
 import { EmployeeService } from '../employee.service';
 
@@ -10,7 +11,10 @@ import { EmployeeService } from '../employee.service';
 export class EmployeeListContainerComponent implements OnInit {
 
   public getEmployeesData$:Observable<employeeModel[]>;
-  constructor(private service: EmployeeService) { 
+  constructor(
+    private service: EmployeeService, 
+    private sharedService:GetDataService
+    ) { 
     this.getEmployeesData$ = new Observable();
   }
 
@@ -20,10 +24,10 @@ export class EmployeeListContainerComponent implements OnInit {
 
   /**
    * @name prop
-   * @description This methos is called in ngOnInit
+   * @description This method is called in ngOnInit
    */
   public prop(){
-    this.getEmployeesData$ = this.service.getEmployees();
+    this.getEmployeesData$ = this.sharedService.getEmployees();
   }
   
 
@@ -32,7 +36,7 @@ export class EmployeeListContainerComponent implements OnInit {
    * @param data 
    */
   public emitEmployeesData(data:employeeModel){
-    this.service.postEmployee(data).subscribe(() => this.getEmployeesData$ = this.service.getEmployees())
+    this.service.postEmployee(data).subscribe(() => this.getEmployeesData$ = this.sharedService.getEmployees())
   }
 
   /**
@@ -40,11 +44,16 @@ export class EmployeeListContainerComponent implements OnInit {
    * @param id 
    */
   public emitId(id:number){
-    this.service.deleteEmployee(id).subscribe(() => this.getEmployeesData$ = this.service.getEmployees())
+    this.service.deleteEmployee(id).subscribe(() => this.getEmployeesData$ = this.sharedService.getEmployees())
   }
   
+  /**
+   * @name emitUpdateEmployee
+   * @param data 
+   * @description gets the call for update
+   */
   public emitUpdateEmployee(data:employeeModel){
-    this.service.updateEmployee(data.id, data).subscribe(() => this.getEmployeesData$ = this.service.getEmployees())
+    this.service.updateEmployee(data.id, data).subscribe(() => this.getEmployeesData$ = this.sharedService.getEmployees())
   }
 
 }

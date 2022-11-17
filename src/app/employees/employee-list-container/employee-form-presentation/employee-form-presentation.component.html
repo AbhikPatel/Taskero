@@ -9,13 +9,13 @@
 
         <!-- Name  -->
         <div class="col-12 mb-3">
-            <label for="fullname" class="form-label"> Name </label>
-            <input type="text" class="form-control" name="fullname" id="fullname" formControlName="fullname"
-                [ngClass]="{'border-danger' : getControls['fullname'].touched && getControls['fullname'].invalid}">
+            <label for="fullname" class="form-label required"> Name </label>
+            <input type="text" class="form-control" name="name" id="name" formControlName="name"
+                [ngClass]="{'border-danger' : getControls['name'].touched && getControls['name'].invalid}">
             <span class="text-danger"
-                *ngIf="getControls['fullname']?.errors?.['required'] && getControls['fullname'].touched"> This Field is
+                *ngIf="getControls['name']?.errors?.['required'] && getControls['name'].touched"> This Field is
                 required </span>
-            <span class="text-danger" *ngIf="getControls['fullname']?.errors?.['maxlength']"> Max should be 50
+            <span class="text-danger" *ngIf="getControls['name']?.errors?.['maxlength']"> Max should be 50
                 Characters </span>
         </div>
 
@@ -27,7 +27,7 @@
         
         <!-- Age  -->
         <div class="col-6 mb-3">
-            <label for="age" class="form-label"> Age </label>
+            <label for="age" class="form-label required"> Age </label>
             <input type="number" class="form-control" name="age" id="age" formControlName="age"
                 [ngClass]="{'border-danger' : getControls['age'].touched && getControls['age'].invalid}">
             <span class="text-danger" *ngIf="getControls['age']?.errors?.['required'] && getControls['age'].touched">
@@ -38,7 +38,7 @@
         
         <!-- Gender  -->
         <div class="col-6 mb-3">
-            <label for="gender" class="form-label"> Gender </label>
+            <label for="gender" class="form-label required"> Gender </label>
             <div class="mt-2">
                 <input type="radio" name="gender" id="male" value="Male" class="form-check-input"
                     formControlName="gender">
@@ -52,7 +52,7 @@
 
         <!-- City  -->
         <div class="col-6 mb-3">
-            <label for="city" class="form-label"> City </label>
+            <label for="city" class="form-label required"> City </label>
             <input type="text" class="form-control" id="city" name="city" formControlName="city"
                 [ngClass]="{'border-danger' : getControls['city'].touched && getControls['city'].invalid}">
             <span class="text-danger" *ngIf="getControls['city']?.errors?.['required'] && getControls['city'].touched">
