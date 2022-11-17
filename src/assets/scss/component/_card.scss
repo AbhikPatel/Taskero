@@ -1,5 +1,5 @@
 .tag{
-    padding: 3px;
+    padding: 3px 5px;
     border-radius: 5px;
     font-size: 0.8rem;
     height: 25px;
@@ -44,4 +44,46 @@
 
 .card-heading{
     width: 80%;
+}
+
+.effect-box{
+    height: 200px;
+    left: 0;
+    bottom: -98%;
+    transition: 0.6s all;
+    background-color: red;
+    z-index: 1;
+}
+
+.count-cards{
+    height: 200px;
+
+    .heading{
+        z-index: 9;
+        transition: 0.4s all;
+    }
+    
+    .count{
+        right: 40px;
+        bottom: 40px;
+        z-index: 9;
+        transition: 0.4s all;
+        font-size: 1.5rem;
+    }
+    
+    &:hover{
+
+        .effect-box{
+            bottom: 0;
+        }
+
+        .count{
+            font-size: 5rem;
+            color: white;
+        }
+
+        .heading{
+            color: white;
+        }
+    }
 }

@@ -1,0 +1,19 @@
+<!-- Start: Dashboard Section  -->
+<div class="h-100 p-4">
+
+    <!-- Heading  -->
+    <h3 class="text-primary"> Dashboard </h3>
+
+    <!-- Start Card Section  -->
+    <div class="row pt-5">
+        <div class="col-3" *ngFor="let data of report">
+            <div class="count-cards bg-white position-relative rounded-2 shadow p-3 overflow-hidden cursor-pointer">
+                <h4 class="heading position-absolute"> {{data.name}} </h4>
+                <span class="count position-absolute"> {{data.count}} </span>
+                <div class="effect-box position-absolute w-100"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Card Section  -->
+</div>
+<!-- End: Dashboard Section  -->
