@@ -20,10 +20,10 @@
         </div>
 
         <!-- Profile  -->
-        <!-- <div class="col-6 mb-3">
+        <div class="col-6 mb-3">
             <label for="profile" class="form-label"> Profile </label>
-            <input type="file" class="form-control" id="profile" name="profile" formControlName="profile">
-        </div> -->
+            <input type="file" class="form-control" accept="image/png, image/jpg, image/jpeg" placeholder="Add Profile" id="profile" name="profile" formControlName="profile" (change)="onSelectFile($event)">
+        </div>
         
         <!-- Age  -->
         <div class="col-6 mb-3">

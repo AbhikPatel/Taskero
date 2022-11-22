@@ -72,7 +72,7 @@ export class EmployeeListPresenterService {
    * @param data
    * @description this will create an overlay
    */
-  public openFilterOverlay(employeesData?: employeeModel[]) {
+  public openFilterOverlay(employeesData?: employeeModel[], DefaultData?:employeeModel[]) {
     const overlayRef = this.overlay.create({
       hasBackdrop: true,
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically()
@@ -86,18 +86,21 @@ export class EmployeeListPresenterService {
     componentRef.instance.emitFilterForm.subscribe((data: any) => {
       this.pastedData = data;
       let Keys = Object.keys(data)
+      let value = Object.values(data)
+      let string = value.toString()
       let filterData: any[] | undefined = [];
 
-      if (data) {
+      if (string != ',,') {
         Keys.forEach((items: any) => {
           if (data[items]) {
             filterData = employeesData?.filter((employee: any) => employee[items] === data[items])
             employeesData = filterData
           }
         })
-        this.filterForm.next(filterData)
+        this.filterForm.next(filterData)   
+      }else if(string === ',,')
+        this.filterForm.next(DefaultData)
         
-      }
       overlayRef.detach();
     })
 

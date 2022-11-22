@@ -22,7 +22,7 @@ export class EmployeeFormPresenterService {
   public formBuilder(){
     return this.fb.group({
       name:['', [Validators.required, Validators.maxLength(50)]],
-      // profile:['', [Validators.required]],
+      profile:['', [Validators.required]],
       age:['', [Validators.required, Validators.maxLength(2)]],
       city:['', [Validators.required, Validators.maxLength(20)]],
       gender:['', [Validators.required]],

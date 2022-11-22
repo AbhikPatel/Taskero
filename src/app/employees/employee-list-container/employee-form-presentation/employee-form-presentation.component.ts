@@ -1,5 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+
+
 import { employeeModel } from '../../employee.model';
 import { EmployeeFormPresenterService } from '../employee-form-presenter/employee-form-presenter.service';
 
@@ -16,29 +18,39 @@ export class EmployeeFormPresentationComponent implements OnInit {
   @Output() public emitUpdateData:EventEmitter<employeeModel>;
 
   public EmployeeGroup:FormGroup;
-  public editmode:boolean;
+  public editMode:boolean;
+  public base64: string;
+  public fileSelected?:Blob;
 
-  constructor(private service:EmployeeFormPresenterService) { 
+  constructor(
+    private service:EmployeeFormPresenterService
+    ) { 
     this.EmployeeGroup = this.service.formBuilder();
     this.emitFormData = new EventEmitter();
     this.emitUpdateData = new EventEmitter();
-    this.editmode = false;
+    this.editMode = false;
+    this.base64 = '';
   }
 
   ngOnInit(): void {
     this.prop()
   }
 
+
   /**
    * @name prop
    * @description This method is called in ngOnInit
    */
   public prop(){
-    this.service.formData$.subscribe((data:employeeModel) => this.editmode ? this.emitUpdateData.emit(data) : this.emitFormData.emit(data));
+    this.service.formData$.subscribe((data:employeeModel) => this.editMode ? this.emitUpdateData.emit(data) : this.emitFormData.emit(data));
 
     if(this.editEmployee){
-      this.EmployeeGroup.patchValue(this.editEmployee);
-      this.editmode = true;
+      this.EmployeeGroup.get('name')?.patchValue(this.editEmployee.name);
+      this.EmployeeGroup.get('age')?.patchValue(this.editEmployee.age);
+      this.EmployeeGroup.get('gender')?.patchValue(this.editEmployee.gender);
+      this.EmployeeGroup.get('city')?.patchValue(this.editEmployee.city);
+      this.EmployeeGroup.controls['profile'].clearValidators();
+      this.editMode = true;
     }
   }
 
@@ -47,6 +59,11 @@ export class EmployeeFormPresentationComponent implements OnInit {
    * @description when clicked on submit
    */
   public onSubmit(){
+    this.EmployeeGroup.value.profile = this.base64
+
+    if(this.editMode && this.EmployeeGroup.value.profile === '')
+      this.EmployeeGroup.value.profile = this.editEmployee.profile
+    
     this.service.getFormData(this.EmployeeGroup.value)
   }
 
@@ -57,4 +74,19 @@ export class EmployeeFormPresentationComponent implements OnInit {
   public get getControls(){
     return this.EmployeeGroup['controls'];
   }
+
+  /**
+   * @name onSelectFile
+   * @param event 
+   * @description This method converts image into base64
+   */
+  public onSelectFile(event: any){
+    let reader = new FileReader();
+    this.fileSelected = event.target?.files[0];
+
+    reader.readAsDataURL(this.fileSelected as Blob)
+    reader.onloadend = () => {this.base64 = reader.result as string}
+  }
+
+
 }

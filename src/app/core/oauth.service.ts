@@ -18,7 +18,10 @@ export class OauthService {
 
   public userProfile:Subject<any>;
 
-  constructor(private oAuth: OAuthService, private http:HttpClient) {
+  constructor(
+    private oAuth: OAuthService, 
+    private http:HttpClient
+    ) {
 
     this.userProfile = new Subject();
 

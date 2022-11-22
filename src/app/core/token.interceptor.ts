@@ -11,7 +11,9 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private service:OAuthService) {}
+  constructor(
+    private service:OAuthService
+    ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (request.url.includes('openid-configuration')) {
