@@ -37,6 +37,10 @@ export class DashboardPresentationComponent implements OnInit {
    * @description This method is called in ngOnInit
    */
   public prop(){
+    this.service.deadline.subscribe((data:number) => this.report[0].count = data)
+    
+    this.service.overDue.subscribe((data:number) => this.report[1].count = data)
+
     this.service.newTask$.subscribe((data:number) => this.report[2].count = data)
 
     this.service.favorite.subscribe((data:number) => this.report[3].count = data)

@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GetDataService } from 'src/app/shared/get-data.service';
+import { cardModule, taskModule } from 'src/app/task/task.model';
 import { OauthService } from '../../oauth.service';
 
 @Component({
@@ -9,17 +10,27 @@ import { OauthService } from '../../oauth.service';
 export class SidebarComponent implements OnInit {
 
   public user:any;
+  public avatar:string;
 
   constructor(
     private oAuthService:OauthService, 
-    private service: GetDataService,
-    private cdr:ChangeDetectorRef
+    private service: GetDataService
     ) { 
-    oAuthService.userProfile.subscribe((userInfo) => this.user = userInfo)
+    oAuthService.userProfile.subscribe((userInfo) => this.user = userInfo);
+    this.avatar = '';
+    
+    if(!this.user?.info?.profile)
+      this.avatar = '../../../../assets/images/avatar.jpg'
+    else
+      this.avatar = this.user?.info?.profile
   }
 
   ngOnInit(): void {
     this.prop()
+  }
+
+  ngOnChanges(){
+    this.prop();
   }
 
   /**
@@ -27,17 +38,15 @@ export class SidebarComponent implements OnInit {
    * @description This method is called in ngOnInit
    */
   public prop(){
-    this.service.getTasks().subscribe((data:any) => {
-      this.cdr.markForCheck();
-      let highPriority =  data.map((item:any) => item.taskCard.filter((task:any) => task.priority === 3))
+    this.service.getTasks().subscribe((data:taskModule[]) => {
+      let highPriority =  data.map((item:taskModule) => item.taskCard.filter((task:cardModule) => task.priority === 3))
       this.priority[0].count = highPriority.flat().length
       
-      let mediumPriority =  data.map((item:any) => item.taskCard.filter((task:any) => task.priority === 2))
+      let mediumPriority =  data.map((item:taskModule) => item.taskCard.filter((task:cardModule) => task.priority === 2))
       this.priority[1].count = mediumPriority.flat().length
 
-      let lowPriority =  data.map((item:any) => item.taskCard.filter((task:any) => task.priority === 1))
+      let lowPriority =  data.map((item:taskModule) => item.taskCard.filter((task:cardModule) => task.priority === 1))
       this.priority[2].count = lowPriority.flat().length
-      
     })
   }
 
@@ -77,6 +86,10 @@ export class SidebarComponent implements OnInit {
     },
   ]
 
+  /**
+   * @name onLogout
+   * @description calls the singout methos from the service
+   */
   public onLogout(){
     this.oAuthService.signOut();
   }

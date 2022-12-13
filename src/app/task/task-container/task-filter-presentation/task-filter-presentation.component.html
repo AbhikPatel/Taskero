@@ -1,0 +1,39 @@
+<!-- Start: Filter Form Overlay  -->
+<div class="overlay-container bg-white rounded-2 p-5">
+    
+    <!-- Heading  -->
+    <h3 class="text-center text-primary"> Filter Form </h3>
+
+    <!-- Start: Form  -->
+    <form class="py-3" [formGroup]="filterGroup" (ngSubmit)="onSubmit()">
+
+        <!-- Priority  -->
+        <div class="mb-3">
+            <label for="priority" class="form-label"> Priority :- </label>
+            <select class="form-select" formControlName="priority">
+                <option value='1'>Low</option>
+                <option value='2'>Medium</option>
+                <option value='3'>High</option>
+            </select>
+        </div>
+
+        <!-- Favorite  -->
+        <div class="mb-3">
+            <label for="favorite" class="form-label"> Favorite :- </label>
+            <div class="d-flex">
+                <input type="radio" class="form-check-input" id="yes" name="favorite" value="true" formControlName="favorite">
+                <label for="yes" class="form-check-label mx-3 cursor-pointer"> Yes </label>
+                <input type="radio" class="form-check-input" id="no" name="favorite" value="false" formControlName="favorite" checked>
+                <label for="no" class="form-check-label mx-3 cursor-pointer"> No </label>
+            </div>
+        </div>
+
+        <!-- Button Functionality  -->
+        <div class="d-flex justify-content-end align-items-center gap-3">
+            <button type="reset" class="btn btn-danger text-white"> Reset </button>
+            <button type="submit" class="btn btn-primary"> Submit </button>
+        </div>
+    </form>
+    <!-- End: Form  -->
+</div>
+<!-- End: Filter Form Overlay  -->

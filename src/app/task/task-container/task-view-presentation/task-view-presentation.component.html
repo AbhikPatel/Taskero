@@ -1,12 +1,15 @@
 <!-- Start: Task Section  -->
 <div class="p-4 h-100">
-    
+
     <!-- Heading  -->
     <h3 class="text-primary"> Tasks </h3>
 
     <!-- BUtton Functionality  -->
     <div class="d-flex align-items-center justify-content-between py-3">
-        <button type="button" class="btn btn-primary"> Filter </button>
+        <button type="button" class="btn btn-primary position-relative" (click)="onFilter()"> 
+            Filter 
+            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle" *ngIf="notification"></span>
+        </button>
         <button type="button" class="btn btn-primary" (click)="onCreate()"> + Create Task </button>
     </div>
 
@@ -20,27 +23,34 @@
             <!-- Start: Card Section  -->
             <div class="card shadow my-3 cursor-pointer" *ngFor="let card of task.taskCard">
                 <div class="card-body position-relative" (click)="onCard(card.steps, card)">
-                    <div class="position-absolute" style="right: 10px;" (click)="onMenu(card.taskName);$event.stopPropagation()">
+                    <div class="position-absolute" style="right: 10px;"
+                        (click)="onMenu(card.taskName);$event.stopPropagation()">
                         <i class='bx bx-dots-vertical-rounded fs-4'></i>
                     </div>
 
                     <!-- Menu Section  -->
-                    <div class="menu-container position-absolute bg-white border border-1" [ngClass]="card.taskName === menu ? 'd-block' : 'd-none'">
-                        <div class="menu-list p-2 border border-1 w-100" (click)="onCreate(card);$event.stopPropagation()"> Edit </div>
-                        <div class="menu-list p-2 border border-1 w-100" (click)="onDelete(card.taskName, card.status);$event.stopPropagation()"> Delete </div>
-                        <div class="menu-list p-2 border border-1 w-100" (click)="onFav(card);$event.stopPropagation()"> Add to Favorite </div>
+                    <div class="menu-container position-absolute bg-white border border-1"
+                        [ngClass]="card.taskName === menu ? 'd-block' : 'd-none'">
+                        <div class="menu-list p-2 border border-1 w-100"
+                            (click)="onCreate(card);$event.stopPropagation()"> Edit </div>
+                        <div class="menu-list p-2 border border-1 w-100"
+                            (click)="onDelete(card.taskName, card.status);$event.stopPropagation()"> Delete </div>
+                        <div class="menu-list p-2 border border-1 w-100" (click)="onFav(card);$event.stopPropagation()">
+                            Add to Favorite </div>
                     </div>
 
                     <!-- Card Title  -->
-                    <div class="card-title d-flex"> 
-                        <h2 class="card-heading text-truncate" title="{{card.taskName}}"> {{card.taskName}} </h2> 
+                    <div class="card-title d-flex">
+                        <h2 class="card-heading text-truncate" title="{{card.taskName}}"> {{card.taskName}} </h2>
+
+                        <!-- Favorite Icon  -->
                         <span *ngIf="card.favorite === true"> <i class='bx bxs-star text-warning'></i> </span>
-                        <span *ngIf="card.priority === 3" class="high tag ms-3"> High </span> 
-                        <span *ngIf="card.priority === 2" class="medium tag ms-3"> Medium </span> 
-                        <span *ngIf="card.priority === 1" class="low tag ms-3"> Low </span> 
+                        
+                        <!-- Priority  -->
+                        <span *ngIf="card.priority === 3" class="high tag ms-3"> High </span>
+                        <span *ngIf="card.priority === 2" class="medium tag ms-3"> Medium </span>
+                        <span *ngIf="card.priority === 1" class="low tag ms-3"> Low </span>
                     </div>
-                    
-                    <!-- Star  -->
 
                     <!-- ProgressBar  -->
                     <div class="progress-container pt-3">
@@ -51,26 +61,37 @@
                             </div>
                             <span> {{completedTasks(card.steps)}}/{{card.steps.length}} </span>
                         </div>
-                        <progressbar [max]="100" [value]="progress(card.steps)" [type]="barColor" [striped]="true" [animate]="true"><i>{{progress(card.steps)}}%</i></progressbar>
+                        <progressbar [max]="100" [value]="progress(card.steps)" [type]="barColor" [striped]="true"
+                            [animate]="true"><i>{{progress(card.steps)}}%</i></progressbar>
                     </div>
 
                     <div class="d-flex align-items-center justify-content-between pt-3">
-                        
+
                         <!-- Employees  -->
-                        <div class="employees-container position-relative">
-                            <img src="../../../../assets/images/John Collins.jpg" class="position-absolute team-profile rounded-circle" alt="">
+                        <div class="employees-container position-relative" [title]="getNames(card.team)">
+                            <img [src]="getImage(card.team[0])"
+                                class="position-absolute border border-dark border-2 team-profile rounded-circle"
+                                alt="profile">
+                            <img [src]="getImage(card.team[1])"
+                                *ngIf="card.team.length > 1"
+                                class="position-absolute border border-dark border-2 team-profile rounded-circle"
+                                alt="profile" style="transform: translateX(30px);">
+                            <div class="position-absolute border border-dark border-2 team-profile d-flex justify-content-center align-items-center rounded-circle"
+                                *ngIf="card.team.length > 2"
+                                style="transform: translateX(60px); height: 40px; backdrop-filter: blur(10px);">
+                                +{{card.team.length - 2}} </div>
                         </div>
 
                         <!-- Due Date  -->
-                        <span class="pt-3"> {{dueDate(card.deadline)}} Days remaining </span>
+                        <span class="pt-3"> {{dueDate(card.deadline)}} </span>
                     </div>
-
                 </div>
             </div>
             <!-- End: Card Section  -->
 
             <!-- No Task Added  -->
-            <div *ngIf="task.taskCard.length === 0" class="empty my-3 rounded-2 d-flex justify-content-center align-items-center">
+            <div *ngIf="task.taskCard.length === 0"
+                class="empty my-3 rounded-2 d-flex justify-content-center align-items-center">
                 <span class="text-muted"> No Task Added </span>
             </div>
         </div>

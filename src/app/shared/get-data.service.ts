@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { employeeModel } from '../employees/employee.model';
@@ -11,8 +12,10 @@ import { taskModule } from '../task/task.model';
 export class GetDataService {
 
   public api:string;
+  public updatedData:Subject<taskModule[]>
   constructor(private http:HttpClient) { 
     this.api = environment.baseURL
+    this.updatedData = new Subject()
   }
 
   /**

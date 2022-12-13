@@ -78,16 +78,20 @@ export class TaskFormPresentationComponent implements OnInit {
   public onSubmit() {
     if (this.editData) {
       let obj = { taskName: this.editData.taskName }
+      let fav = { favorite: this.editData.favorite }
       this.taskGroup.value.steps = this.editData.steps
-      let formData = Object.assign(obj, this.taskGroup.value)
+      let finalData = Object.assign(obj, this.taskGroup.value)
+      let formData = Object.assign(fav, finalData)
       if(this.editData.status === 2){
         let obj = {status: 2}
         formData = Object.assign(obj, formData)
       }
       this.service.getFormData(formData)
-    } else 
-    
-      this.service.getFormData(this.taskGroup.value)
+    } else {
+      let fav = { favorite: false}
+      let formData = Object.assign(fav, this.taskGroup.value)  
+      this.service.getFormData(formData)
+    }
   }
 
   /**
