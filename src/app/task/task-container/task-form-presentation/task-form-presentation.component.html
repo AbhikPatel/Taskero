@@ -45,9 +45,9 @@
         </div>
 
         <!-- Deadline  -->
-        <div class="col-6 mb-3">
+        <div class="col-6 mb-3 form-group">
             <label for="deadline" class="form-label required"> Due Date </label>
-            <input type="date" name="deadline" id="deadline" class="form-control" formControlName="deadline" min="16-11-2022">
+            <input type="date" placeholder="Datepicker" class="form-control" formControlName="deadline">
             <span class="text-danger"
                 *ngIf="getControls['deadline']?.errors?.['required'] && getControls['deadline'].touched"> This Field is
                 required </span>
@@ -84,7 +84,7 @@
         </div>
 
         <!-- Add Button  -->
-        <div class="col-12">
+        <div class="col-12" *ngIf="!editData">
             <button class="btn btn-primary w-100 text-white" type="button" (click)="onAdd()"> + Add
             </button>
         </div>

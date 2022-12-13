@@ -10,7 +10,7 @@
         <!-- Profile Section  -->
         <div class="d-flex flex-column align-items-center py-3 border-1 border-bottom">
             <figure>
-                <img src="{{user?.info?.picture}}" class="profile-img rounded-circle" alt="">
+                <img [src]="avatar" class="profile-img rounded-circle" alt="profile-img">
             </figure>
             <h2 class="fs-5"> {{user?.info?.name}} </h2>
         </div>

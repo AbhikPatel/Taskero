@@ -3,6 +3,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { cardModule, Steps, taskModule } from '../../task.model';
+import { TaskFilterPresentationComponent } from '../task-filter-presentation/task-filter-presentation.component';
 import { TaskFormPresentationComponent } from '../task-form-presentation/task-form-presentation.component';
 import { TaskProgressPresentationComponent } from '../task-progress-presentation/task-progress-presentation.component';
 
@@ -15,6 +16,9 @@ export class TaskViewPresenterService {
   private updatedData: Subject<taskModule>;
   public updatedData$: Observable<taskModule>;
 
+  private filteredData: Subject<any>;
+  public filteredData$: Observable<any>;
+
   constructor(private overlay: Overlay) {
     this.FormData = new Subject();
     this.FormData$ = new Observable();
@@ -23,6 +27,10 @@ export class TaskViewPresenterService {
     this.updatedData = new Subject();
     this.updatedData$ = new Observable();
     this.updatedData$ = this.updatedData.asObservable();
+
+    this.filteredData = new Subject();
+    this.filteredData$ = new Observable();
+    this.filteredData$ = this.filteredData.asObservable();
   }
 
   /**
@@ -57,8 +65,8 @@ export class TaskViewPresenterService {
 
         this.FormData.next(finalData)
       } else {
-        let obj = {favorite: false}
-        let total = Object.assign(obj,data)
+        let obj = { favorite: false }
+        let total = Object.assign(obj, data)
         taskData[data.status].taskCard.push(total)
         let finalData = taskData[data.status]
         this.FormData.next(finalData)
@@ -70,6 +78,12 @@ export class TaskViewPresenterService {
       componentRef.instance.editData = editData
   }
 
+  /**
+   * @name openProgressOverlay
+   * @param steps 
+   * @param cardData 
+   * @param taskData 
+   */
   public openProgressOverlay(steps: any, cardData?: any, taskData?: any) {
     const overlayRef = this.overlay.create({
       hasBackdrop: true,
@@ -107,6 +121,35 @@ export class TaskViewPresenterService {
       }
 
       overlayRef.detach()
+    })
+  }
+
+  public openFilterOverlay(task: taskModule[]) {
+    const overlayRef = this.overlay.create({
+      hasBackdrop: true,
+      positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically()
+    })
+
+    const component = new ComponentPortal(TaskFilterPresentationComponent)
+    const componentRef = overlayRef.attach(component)
+
+    overlayRef.backdropClick().subscribe(() => overlayRef.detach())
+
+    componentRef.instance.emitFilterForm.subscribe((data) => {
+      console.log(data);
+
+      let Keys = Object.keys(data)
+      let filterData: any = []
+
+      Keys.forEach((items: any) => {
+        if (data[items]) {
+          filterData = task.map((taskData: taskModule) => taskData.taskCard.filter((card: any) => card[items] === data[items]))
+          task[0].taskCard = filterData.flat()
+        }
+      })
+
+      this.filteredData.next(filterData.flat())
+      overlayRef.detach();
     })
   }
 }
